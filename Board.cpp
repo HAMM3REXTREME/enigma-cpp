@@ -7,12 +7,12 @@
 
 Plugboard::Plugboard(const std::vector<int>& arrangement) {
     // Initialize forward and backward mappings
-    forward.resize(Letters);
-    backward.resize(Letters);
+    forward.resize(Letters+1);
+    backward.resize(Letters+1);
 
     int prevMappedLetter = 0; // Track the previously mapped letter
 
-    for (int i = 0; i < Letters; ++i) {
+    for (int i = 1; i < (Letters+1); ++i) {
         if (arrangement[i] != 0) {
             forward[i] = arrangement[i];
             prevMappedLetter = forward[i];
@@ -25,16 +25,16 @@ Plugboard::Plugboard(const std::vector<int>& arrangement) {
 
 
 int Plugboard::throughFront(int letterNum) const {
-    if (letterNum < 0 || letterNum > Letters) {
+/*     if (letterNum <= 0 || letterNum > Letters) {
         return letterNum; // Return the same letter if out of range
-    }
+    } */
     return forward[letterNum];
 }
 
 int Plugboard::throughBack(int letterNum) const {
-    if (letterNum < 0 || letterNum > Letters) {
+/*     if (letterNum <= 0 || letterNum > Letters) {
         return letterNum; // Return the same letter if out of range
-    }
+    } */
     return backward[letterNum];
 }
 

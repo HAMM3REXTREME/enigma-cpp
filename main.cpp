@@ -1,20 +1,29 @@
 #include <iostream>
 #include <string>
 #include "EnigmaMachine.h"
+#include "Util.h"
+
+
+
 
 int main() {
     // Configure the Enigma machine
-    std::vector<int> plugboardArrangement = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25};
+    //std::vector<int> plugboardArrangement = {-1, 2, 1, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26};
 
-    Plugboard plugboard(plugboardArrangement);
+    Plugboard plugboard(stringToVector("MDTSWILRUYQNKFEJCAZBPGXOHV"));
 
-    std::vector<Rotor> rotors = {
-        Rotor(plugboard, 2, 3), // Initialize with plugboard, spin offset, and notch
-        Rotor(plugboard, 2, 7),
-        Rotor(plugboard, 2, 4)
+    Plugboard rotor1(stringToVector("DMTWSILRUYQNKFEJCAZBPGXOHV"));
+	Plugboard rotor2(stringToVector("HQZGPJTMOBLNCIFDYAWVEUSRKX"));
+	Plugboard rotor3(stringToVector("UQNTLSZFMREHDPXKIBVYGJCWOA"));
+
+	std::vector<Rotor> rotors = {
+        Rotor(rotor1, 5, 6), // Initialize with plugboard, spin offset, and notch
+        Rotor(rotor2, 0, 6), // 1 is no offset.
+        Rotor(rotor3, 5, 0) // 0 means no notch
     };
 
-    std::vector<int> testReflector = {1, 0, 3, 2, 5, 4, 7, 6, 9, 8, 11, 10, 13, 12, 15, 14, 17, 16, 19, 18, 21, 20, 23, 22, 25, 24};
+    // Make sure your reflector is physically accurate
+    std::vector<int> testReflector = {-1, 26, 3, 2, 5, 4, 7, 6, 9, 8, 11, 10, 13, 12, 15, 14, 17, 16, 19, 18, 21, 20, 23, 22, 25, 24, 1};
 
     EnigmaMachine enigmaMachine(plugboard, rotors, testReflector);
 

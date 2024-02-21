@@ -4,7 +4,6 @@
 #include <vector>
 #include "Constants.h"
 
-
 class Plugboard {
 public:
     Plugboard(const std::vector<int>& arrangement);
